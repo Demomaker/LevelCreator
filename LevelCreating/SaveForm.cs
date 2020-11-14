@@ -13,8 +13,8 @@ namespace LevelCreating
     public partial class SaveForm : Form
     {
         string saveseperator = "";
-        string savelineSeperator = "";
-        bool savefile = false;
+        string savelineSeperator = "\\n";
+        bool save = false;
         public SaveForm()
         {
             InitializeComponent();
@@ -22,21 +22,15 @@ namespace LevelCreating
 
         private void SaveForm_Load(object sender, EventArgs e)
         {
-
+            seperator.Text = saveseperator;
+            lineSeperator.Text = savelineSeperator;
         }
 
         private void savebutton_Click(object sender, EventArgs e)
         {
-            if(seperator.Text != "Seperator")
-            {
-                SetSeperator(seperator.Text);
-            }
-
-            if(lineSeperator.Text != "Line Seperator")
-            {
-                SetLineSeperator(lineSeperator.Text);
-            }
-
+            save = true;
+            SetSeperator(seperator.Text);
+            SetLineSeperator(lineSeperator.Text);
             this.Close();
         }
 
@@ -50,11 +44,6 @@ namespace LevelCreating
             this.savelineSeperator = lineSeperator;
         }
 
-        public void SetSaveFile(bool savestate)
-        {
-            this.savefile = savestate;
-        }
-
         public string GetSeperator()
         {
             return saveseperator;
@@ -64,10 +53,9 @@ namespace LevelCreating
         {
             return savelineSeperator;
         }
-
-        public bool GetSaveFile()
+        public bool GetSaveState() 
         {
-            return savefile;
+            return save;
         }
     }
 }

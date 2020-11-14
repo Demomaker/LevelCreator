@@ -14,8 +14,9 @@ namespace LevelCreating
     public partial class LevelSize : Form
     {
 
-        public int levelWidth = 10;
-        public int levelHeight = 10;
+        private int levelWidth = 10;
+        private int levelHeight = 10;
+        private bool saveLevelSize = false;
         public LevelSize()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace LevelCreating
 
         private void OKButton_Click(object sender, EventArgs e)
         {
+            saveLevelSize = true;
             int.TryParse(LevelWidth.Text, out levelWidth);
             int.TryParse(LevelHeight.Text, out levelHeight);
             Close();
@@ -36,10 +38,11 @@ namespace LevelCreating
             levelHeight = height;
         }
 
-        public void TransferBack(out int width, out int height)
+        public void TransferBack(out int width, out int height, out bool saveLevelSize)
         {
             width = levelWidth;
             height = levelHeight;
+            saveLevelSize = this.saveLevelSize;
         }
 
     }

@@ -66,9 +66,9 @@
             this.seperatorLabel.AutoSize = true;
             this.seperatorLabel.Location = new System.Drawing.Point(12, 9);
             this.seperatorLabel.Name = "seperatorLabel";
-            this.seperatorLabel.Size = new System.Drawing.Size(62, 13);
+            this.seperatorLabel.Size = new System.Drawing.Size(79, 13);
             this.seperatorLabel.TabIndex = 4;
-            this.seperatorLabel.Text = "Seperator : ";
+            this.seperatorLabel.Text = "Seperator (txt) :";
             // 
             // lineSeperatorLabel
             // 

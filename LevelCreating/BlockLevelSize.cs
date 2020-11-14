@@ -14,6 +14,7 @@ namespace LevelCreating
     {
         int blockWidth = 10;
         int blockHeight = 10;
+        bool saveBlockLevelSize = false;
         public BlockLevelSize()
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace LevelCreating
 
         private void OKbutton_Click(object sender, EventArgs e)
         {
+            saveBlockLevelSize = true;
             int.TryParse(BlockX.Text, out blockWidth);
             int.TryParse(BlockY.Text, out blockHeight);
             Close();
@@ -32,10 +34,11 @@ namespace LevelCreating
             blockHeight = height;
         }
 
-        public void TransferBack(out int width, out int height)
+        public void TransferBack(out int width, out int height, out bool saveBlockLevelSize)
         {
             width = blockWidth;
             height = blockHeight;
+            saveBlockLevelSize = this.saveBlockLevelSize;
         }
     }
 }
