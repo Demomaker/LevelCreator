@@ -1,5 +1,6 @@
 # LevelCreator
 Useful for creating a level visually and then exporting it into a text file to use in a game project.
+This is especially useful for 2D games with a limited space.
 
 ## Create a level
 ![Create a level](https://user-images.githubusercontent.com/18319764/99870740-77880a80-2ba3-11eb-9439-46289ca84171.PNG)
