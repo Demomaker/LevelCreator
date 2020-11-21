@@ -39,6 +39,7 @@
             this.inventoryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.renderPanel = new System.Windows.Forms.Panel();
+            this.centerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,8 @@
             // 
             this.propertiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sizeToolStripMenuItem,
-            this.blockSizeToolStripMenuItem});
+            this.blockSizeToolStripMenuItem,
+            this.centerToolStripMenuItem});
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
             this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.propertiesToolStripMenuItem.Text = "Properties";
@@ -67,14 +69,14 @@
             // sizeToolStripMenuItem
             // 
             this.sizeToolStripMenuItem.Name = "sizeToolStripMenuItem";
-            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sizeToolStripMenuItem.Text = "Size";
             this.sizeToolStripMenuItem.Click += new System.EventHandler(this.SizeClick);
             // 
             // blockSizeToolStripMenuItem
             // 
             this.blockSizeToolStripMenuItem.Name = "blockSizeToolStripMenuItem";
-            this.blockSizeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.blockSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.blockSizeToolStripMenuItem.Text = "Block Size";
             this.blockSizeToolStripMenuItem.Click += new System.EventHandler(this.BlockSizeClick);
             // 
@@ -111,7 +113,7 @@
             // inventoryMenuItem
             // 
             this.inventoryMenuItem.Name = "inventoryMenuItem";
-            this.inventoryMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.inventoryMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inventoryMenuItem.Text = "Inventory";
             this.inventoryMenuItem.Click += new System.EventHandler(this.inventoryMenuItem_Click);
             // 
@@ -121,11 +123,21 @@
             // 
             // renderPanel
             // 
+            this.renderPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.renderPanel.Location = new System.Drawing.Point(12, 27);
             this.renderPanel.Name = "renderPanel";
             this.renderPanel.Size = new System.Drawing.Size(260, 222);
             this.renderPanel.TabIndex = 1;
             this.renderPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.renderPanel_MouseClick);
+            // 
+            // centerToolStripMenuItem
+            // 
+            this.centerToolStripMenuItem.Name = "centerToolStripMenuItem";
+            this.centerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.centerToolStripMenuItem.Text = "Center";
+            this.centerToolStripMenuItem.Click += new System.EventHandler(this.centerToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -162,6 +174,7 @@
         private System.Windows.Forms.Panel renderPanel;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem centerToolStripMenuItem;
     }
 }
 

@@ -16,7 +16,7 @@ namespace LevelCreating
         public Dictionary<int, Image> IntToImageDictionary { get; private set; } = new Dictionary<int, Image>();
         public LevelGrid LevelGrid { get; private set; } = new LevelGrid();
         public Interacter Interacter { get; private set; } = null;
-        public Renderer Renderer { get; private set; } = new Renderer();
+        public Renderer Renderer { get; private set; }
         public Renderer.RenderMode RenderMode { get; private set; } = Renderer.RenderMode.Level;
         public int WindowWidth { get; private set; } = STARTING_LEVEL_WIDTH;
         public int WindowHeight { get; private set; } = STARTING_LEVEL_HEIGHT;
@@ -33,6 +33,7 @@ namespace LevelCreating
         public void SetInteracterController(ref Controller controller) 
         {
             Interacter = new Interacter(ref controller);
+            Renderer = new Renderer(ref controller);
         }
         /// <summary>
         /// Point d'entrée principal de l'application.
@@ -48,6 +49,7 @@ namespace LevelCreating
         public void SetRenderMode(Renderer.RenderMode renderMode) 
         {
             RenderMode = renderMode;
+            controller.Renderer.Repaint();
         }
 
         public void SetWindowWidth(int windowWidth) 

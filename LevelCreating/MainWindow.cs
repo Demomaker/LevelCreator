@@ -14,7 +14,6 @@ namespace LevelCreating
         {
             this.controller = controller;
             InitializeComponent();
-            timer.Tick += Rendering;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -25,32 +24,8 @@ namespace LevelCreating
             controller.SetRenderPanel(ref renderPanel);
             controller.SetWindowWidth(Width);
             controller.SetWindowHeight(Height);
-            g = renderPanel.CreateGraphics();
-            controller.Renderer.SetGraphics(g);
             controller.SetInteracterController(ref controller);
-            controller.Renderer.Repaint();
-        }
-
-        private void Rendering(object sender, EventArgs e)
-        {
-            if(controller.Renderer.NeedsToRender())
-            {
-                render();
-            }
-        }
-
-        public void render()
-        {
-            g.Clear(BackColor);
-            switch (controller.RenderMode)
-            {
-                case Renderer.RenderMode.Inventory:
-                    controller.Renderer.RenderInventory(controller.IntToImageDictionary, Width, controller.BlockWidth, controller.BlockHeight);
-                    break;
-                case Renderer.RenderMode.Level:
-                    controller.Renderer.RenderImageGrid(controller.LevelGrid, controller.IntToImageDictionary, controller.BlockWidth, controller.BlockHeight);
-                    break;
-            }
+            controller.Renderer.Regenerate();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -83,7 +58,7 @@ namespace LevelCreating
             {
                 controller.LevelGrid.SetWidth(levelWidth);
                 controller.LevelGrid.SetHeight(levelHeight);
-                controller.Renderer.Repaint();
+                controller.Renderer.Regenerate();
             }
         }
 
@@ -100,7 +75,7 @@ namespace LevelCreating
             {
                 controller.SetBlockWidth(blockWidth);
                 controller.SetBlockHeight(blockHeight);
-                controller.Renderer.Repaint();
+                controller.Renderer.Regenerate();
             }
         }
 
@@ -124,7 +99,7 @@ namespace LevelCreating
             {
                 Console.WriteLine(e2.Message);
             }
-            controller.Renderer.Repaint();
+            controller.Renderer.Regenerate();
         }
 
         private bool IsValidPath(string path, bool allowRelativePaths = false)
@@ -294,17 +269,17 @@ namespace LevelCreating
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
         {
-            controller.Renderer.Repaint();
+            controller.Renderer.Regenerate();
         }
 
         private void Form1_ResizeBegin(object sender, EventArgs e)
         {
-            controller.Renderer.Repaint();
+            controller.Renderer.Regenerate();
         }
 
         private void Form1_ResizeEnd_1(object sender, EventArgs e)
         {
-            controller.Renderer.Repaint();
+            controller.Renderer.Regenerate();
         }
 
         private void inventoryMenuItem_Click(object sender, EventArgs e)
@@ -318,7 +293,7 @@ namespace LevelCreating
             {
                 controller.SetRenderMode(Renderer.RenderMode.Level);
             }
-            controller.Renderer.Repaint();
+            controller.Renderer.Regenerate();
         }
 
         private void renderPanel_MouseClick(object sender, MouseEventArgs e)
@@ -326,6 +301,13 @@ namespace LevelCreating
             MouseButtons button = e.Button;
             Point p = this.PointToClient(Cursor.Position);
             controller.Interacter.ManageMouseDown(button, p);
+        }
+
+        private void centerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.Renderer.SetOffset(0,0);
+            controller.Renderer.Regenerate();
+            controller.Renderer.Repaint();
         }
     }
 }

@@ -12,10 +12,43 @@ namespace LevelCreating
     {
         private Controller controller;
         private int blockNumberChoice = -1;
+        private bool mouseDown = false; 
+        private Size dragSize = SystemInformation.DragSize;
+        private Rectangle dragBounds = Rectangle.Empty;
+        private bool canDrag = false;
+        private bool needsToDrag = false;
+        private int startX = 0;
+        private int startY = 0;
         public Interacter(ref Controller controller) 
         {
             this.controller = controller;
+            controller.RenderPanel.MouseDown += RenderPanel_MouseDown;
+            controller.RenderPanel.MouseUp += RenderPanel_MouseUp;
+            controller.RenderPanel.MouseMove += RenderPanel_DragDrop;
         }
+
+        private void RenderPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            canDrag = false;
+        }
+
+        private void RenderPanel_DragDrop(object sender, MouseEventArgs e)
+        {
+            if (canDrag)
+            {
+                controller.Renderer.SetOffset(controller.Renderer.XOffset + (int)((e.X - startX) * 0.1), controller.Renderer.YOffset + (int)((e.Y - startY) * 0.1));
+                controller.Renderer.Regenerate();
+                controller.Renderer.Repaint();
+            }
+        }
+
+        private void RenderPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            startX = e.X;
+            startY = e.Y;
+            canDrag = true;
+        }
+
         public void ManageKeyDown(Keys key) 
         {
             if (key == Keys.E)
@@ -45,7 +78,7 @@ namespace LevelCreating
             {
                 ManageArrowKeyDown();
             }
-            controller.Renderer.Repaint();
+            controller.Renderer.Regenerate();
         }
 
         public void ManageMouseDown(MouseButtons button, Point p) 
@@ -72,7 +105,7 @@ namespace LevelCreating
                     RemoveBlocks(mousePositionX, mousePositionY);
                 }
             }
-            controller.Renderer.Repaint();
+            controller.Renderer.Regenerate();
         }
 
         public void ManageArrowKeyLeft()
@@ -142,6 +175,7 @@ namespace LevelCreating
             {
                 ChangeBlockNumberChoice(mousePositionX, mousePositionY, blockNumberChoice + 1);
             }
+            controller.Renderer.Regenerate();
             controller.Renderer.Repaint();
         }
         private void RemoveBlocks(int mousePositionX, int mousePositionY)
@@ -149,6 +183,7 @@ namespace LevelCreating
             if (controller.RenderMode == Renderer.RenderMode.Level)
             {
                 ChangeBlockNumberChoice(mousePositionX, mousePositionY, 0);
+                controller.Renderer.Regenerate();
                 controller.Renderer.Repaint();
             }
 
