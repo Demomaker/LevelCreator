@@ -1,6 +1,7 @@
 # LevelCreator
 ![GitHub license](https://img.shields.io/github/license/Demomaker/LevelCreator?style=plastic)
 ![GitHub all releases](https://img.shields.io/github/downloads/Demomaker/LevelCreator/total?style=plastic)
+
 ## EN
 
 Useful for creating a level visually and then exporting it into a text file to use in a game project.
